@@ -1,74 +1,101 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>আমার প্রথম ওয়েবসাইট</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f4f8;
-      color: #243047;
-      text-align: center;
-      margin: 0;
-    }
-
-    header {
-      background: #155eef;
-      color: white;
-      padding: 35px 15px;
-    }
-
-    main {
-      max-width: 600px;
-      margin: 35px auto;
-      padding: 25px;
-      background: white;
-      border-radius: 14px;
-    }
-
-    .button {
-      display: inline-block;
-      background: #155eef;
-      color: white;
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-    }
-
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-    }
-  </style>
+  <meta name="description" content="Personal portfolio website">
+  <meta name="theme-color" content="#101027">
+  <title>My Portfolio | Personal Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>স্বাগতম আমার ওয়েবসাইটে!</h1>
-    <p>আমি HTML ও CSS শিখছি</p>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home"><span class="brand-mark">N</span><span>My<span class="gradient-text">Portfolio</span></span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" data-en="Home" data-bn="হোম">Home</a>
+        <a href="#about" data-en="About" data-bn="আমার সম্পর্কে">About</a>
+        <a href="#skills" data-en="Skills" data-bn="দক্ষতা">Skills</a>
+        <a href="#projects" data-en="Projects" data-bn="প্রজেক্ট">Projects</a>
+        <a href="#contact" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="languageToggle" aria-label="Switch language">বাংলা</button>
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle color theme">☀</button>
+      </div>
+    </nav>
   </header>
 
-
-    <div class="container">
-       <h1>স্বাগতম! এটি আমার নতুন ওয়েবসাইট</h1>
-
   <main>
-    <h2>আমার সম্পর্কে</h2>
-    <p>আমি একজন নতুন ওয়েব ডেভেলপার।
-    ধাপে ধাপে ওয়েবসাইট তৈরি করা শিখছি।</p>
+    <section class="hero container" id="home">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="status-dot"></span><span data-en="WELCOME TO MY PERSONAL WEBSITE" data-bn="আমার ব্যক্তিগত ওয়েবসাইটে স্বাগতম">WELCOME TO MY PERSONAL WEBSITE</span></div>
+        <p class="hello" data-en="Hello, I'm" data-bn="হ্যালো, আমি">Hello, I'm</p>
+        <h1><span class="gradient-text" data-en="Your Name" data-bn="আপনার নাম">Your Name</span><br><span data-en="Aspiring Web Developer" data-bn="ওয়েব ডেভেলপার হওয়ার স্বপ্ন দেখি">Aspiring Web Developer</span></h1>
+        <p class="hero-description" data-en="I love learning new technologies and building clean, useful experiences for the web." data-bn="আমি নতুন প্রযুক্তি শিখতে এবং ওয়েবের জন্য সুন্দর ও প্রয়োজনীয় অভিজ্ঞতা তৈরি করতে ভালোবাসি।">I love learning new technologies and building clean, useful experiences for the web.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#projects" data-en="Explore My Work ↗" data-bn="আমার কাজ দেখুন ↗">Explore My Work ↗</a>
+          <a class="btn btn-secondary" href="#contact" data-en="Contact Me" data-bn="যোগাযোগ করুন">Contact Me</a>
+        </div>
+        <div class="hero-meta">
+          <div><span class="meta-icon">◷</span><span data-en="Local time" data-bn="স্থানীয় সময়">Local time</span><strong id="liveClock">--:--:--</strong><small id="liveDate">Loading date…</small></div>
+          <div><span class="meta-icon">◎</span><span data-en="Visits on this browser" data-bn="এই ব্রাউজারে ভিজিট">Visits on this browser</span><strong id="visitCount">—</strong><small data-en="Stored on this device" data-bn="এই ডিভাইসে সংরক্ষিত">Stored on this device</small></div>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="profile-card">
+          <div class="card-top"><span></span><span></span><span></span><small>HELLO WORLD</small></div>
+          <div class="avatar">N</div>
+          <div class="code-line short"></div><div class="code-line long"></div><div class="code-line medium"></div>
+          <div class="profile-caption"><strong data-en="Creative mind" data-bn="সৃজনশীল মন">Creative mind</strong><span data-en="Always learning • Always building" data-bn="শিখছি প্রতিদিন • তৈরি করছি প্রতিনিয়ত">Always learning • Always building</span></div>
+        </div>
+        <div class="floating-chip chip-one">✦ HTML</div><div class="floating-chip chip-two">✧ CSS</div><div class="floating-chip chip-three">⌘ JS</div>
+      </div>
+    </section>
 
-    <h2>আমার লক্ষ্য</h2>
-    <p>HTML ও CSS দিয়ে সুন্দর ওয়েবসাইট তৈরি করা।</p>
+    <section class="section container" id="about">
+      <div class="section-heading reveal"><p class="section-kicker">01 / <span data-en="GET TO KNOW ME" data-bn="আমার পরিচয়">GET TO KNOW ME</span></p><h2 data-en="A little about me" data-bn="আমার সম্পর্কে কিছু কথা">A little about me</h2></div>
+      <div class="about-panel glass reveal">
+        <div class="about-symbol">✳</div>
+        <div><h3 data-en="Curious by nature, creator by passion." data-bn="জানার আগ্রহ থেকেই আমার সৃষ্টির শুরু।">Curious by nature, creator by passion.</h3>
+        <p data-en="I'm a learner who enjoys exploring web design, coding, and creative ideas. My goal is to keep improving, create meaningful projects, and share what I learn." data-bn="আমি একজন শিক্ষার্থী, যে ওয়েব ডিজাইন, কোডিং এবং সৃজনশীল ধারণা নিয়ে কাজ করতে ভালোবাসে। আমার লক্ষ্য নিয়মিত দক্ষতা বাড়ানো, অর্থবহ প্রজেক্ট তৈরি করা এবং যা শিখি তা সবার সঙ্গে ভাগ করে নেওয়া।">I'm a learner who enjoys exploring web design, coding, and creative ideas. My goal is to keep improving, create meaningful projects, and share what I learn.</p>
+        <a class="text-link" href="#contact" data-en="Let's connect →" data-bn="চলুন যোগাযোগ করি →">Let's connect →</a></div>
+      </div>
+    </section>
 
-    <a class="button"
-       href="https://github.com/sohugrana90"
-       target="_blank"
-       rel="noopener noreferrer">আমার GitHub</a>
+    <section class="section container" id="skills">
+      <div class="section-heading reveal"><p class="section-kicker">02 / <span data-en="WHAT I USE" data-bn="আমার দক্ষতা">WHAT I USE</span></p><h2 data-en="Skills & technologies" data-bn="দক্ষতা ও প্রযুক্তি">Skills & technologies</h2></div>
+      <div class="skills-grid">
+        <article class="skill-card glass reveal"><div class="skill-icon orange">5</div><h3>HTML5</h3><p data-en="Building structured web pages" data-bn="ওয়েবপেজের কাঠামো তৈরি">Building structured web pages</p><div class="skill-track"><span style="width:82%"></span></div></article>
+        <article class="skill-card glass reveal"><div class="skill-icon blue">✧</div><h3>CSS3</h3><p data-en="Styling responsive interfaces" data-bn="রেসপনসিভ ডিজাইন তৈরি">Styling responsive interfaces</p><div class="skill-track"><span style="width:72%"></span></div></article>
+        <article class="skill-card glass reveal"><div class="skill-icon yellow">JS</div><h3>JavaScript</h3><p data-en="Adding interaction to websites" data-bn="ওয়েবসাইটে ইন্টারঅ্যাকশন যোগ">Adding interaction to websites</p><div class="skill-track"><span style="width:48%"></span></div></article>
+      </div>
+      <p class="small-note" data-en="Edit the skill levels to match your actual experience." data-bn="আপনার প্রকৃত দক্ষতা অনুযায়ী স্কিলের মাত্রা পরিবর্তন করুন।">Edit the skill levels to match your actual experience.</p>
+    </section>
+
+    <section class="section container" id="projects">
+      <div class="section-heading reveal"><p class="section-kicker">03 / <span data-en="SELECTED WORK" data-bn="আমার কাজ">SELECTED WORK</span></p><h2 data-en="Featured projects" data-bn="নির্বাচিত প্রজেক্ট">Featured projects</h2></div>
+      <div class="projects-grid">
+        <article class="project-card glass reveal"><div class="project-visual visual-one"><span>01</span><div class="mini-window"><i></i><i></i><i></i><b>My First Website</b><em></em><em></em></div></div><div class="project-info"><p class="project-type">HTML • CSS</p><h3 data-en="My First Website" data-bn="আমার প্রথম ওয়েবসাইট">My First Website</h3><p data-en="A starting point for my journey into web development." data-bn="ওয়েব ডেভেলপমেন্ট শেখার যাত্রায় আমার প্রথম পদক্ষেপ।">A starting point for my journey into web development.</p><a class="text-link" href="https://sohugrana90.github.io/my-first-project/" target="_blank" rel="noopener noreferrer" data-en="View project ↗" data-bn="প্রজেক্ট দেখুন ↗">View project ↗</a></div></article>
+        <article class="project-card glass reveal"><div class="project-visual visual-two"><span>02</span><div class="abstract-shape">✦</div></div><div class="project-info"><p class="project-type">YOUR NEXT PROJECT</p><h3 data-en="New project coming soon" data-bn="নতুন প্রজেক্ট আসছে">New project coming soon</h3><p data-en="Replace this card with your next website or experiment." data-bn="আপনার পরবর্তী ওয়েবসাইট বা কাজ দিয়ে এই কার্ডটি পরিবর্তন করুন।">Replace this card with your next website or experiment.</p><a class="text-link" href="#contact" data-en="Get in touch →" data-bn="যোগাযোগ করুন →">Get in touch →</a></div></article>
+      </div>
+    </section>
+
+    <section class="section container" id="contact">
+      <div class="contact-panel reveal"><div><p class="section-kicker">04 / CONTACT</p><h2 data-en="Have an idea? Let's talk." data-bn="কোনো পরিকল্পনা আছে? কথা বলি।">Have an idea? Let's talk.</h2><p data-en="I'd love to hear from you. Connect with me through the links below." data-bn="আপনার কথা শুনতে ভালো লাগবে। নিচের লিংকগুলোর মাধ্যমে যোগাযোগ করুন।">I'd love to hear from you. Connect with me through the links below.</p></div><div class="contact-links"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="mailto:your.email@example.com">Email ↗</a></div></div>
+    </section>
   </main>
 
-  <footer>
-    <p>© 2026 | আমার প্রথম ওয়েবসাইট</p>
-  </footer>
+  <footer class="footer"><div class="container footer-inner"><span>© <span id="year"></span> Your Name. <span data-en="Made with curiosity." data-bn="কৌতূহল নিয়ে তৈরি।">Made with curiosity.</span></span><a href="#home">Back to top ↑</a></div></footer>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
 </body>
 </html>
