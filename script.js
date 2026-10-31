@@ -143,7 +143,11 @@ async function loadProducts() {
 }
 
 function productImages(p) {
-  const list = Array.isArray(p.image_urls) ? p.image_urls.filter(Boolean) : [];
+  let raw = p.image_urls;
+  if (typeof raw === "string") {
+    try { raw = JSON.parse(raw); } catch (_) { raw = [raw]; }
+  }
+  const list = Array.isArray(raw) ? raw.filter(url => typeof url === "string" && url.trim()) : [];
   if (p.image_url && !list.includes(p.image_url)) list.unshift(p.image_url);
   return [...new Set(list)];
 }
@@ -159,11 +163,12 @@ function renderProducts(filter = "") {
     const imgs = productImages(p);
     const cover = imgs[0];
     return `
-      <article class="product-card glass">
+      <article class="product-card glass" data-product-card="${esc(p.id)}">
         <button class="product-gallery-trigger" type="button" data-gallery="${esc(p.id)}" aria-label="View photos of ${esc(p.name)}">
-          <div class="product-art">${cover ? `<img src="${esc(cover)}" alt="${esc(p.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">` : "👗"}</div>
-          ${imgs.length > 1 ? `<span class="gallery-count">${imgs.length} photos · View gallery ↗</span>` : '<span class="gallery-count">View details ↗</span>'}
+          <div class="product-art">${cover ? `<img data-main-product-image="${esc(p.id)}" src="${esc(cover)}" alt="${esc(p.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">` : "👗"}</div>
+          <span class="gallery-count">${imgs.length} photo${imgs.length===1?"":"s"} · Click to enlarge ↗</span>
         </button>
+        ${imgs.length > 1 ? `<div class="product-photo-strip" aria-label="More product photos">${imgs.map((url,i)=>`<button type="button" class="product-photo-thumb ${i===0?"active":""}" data-card-photo="${esc(p.id)}" data-photo-index="${i}" aria-label="Show product photo ${i+1}"><img src="${esc(url)}" alt="${esc(p.name)} photo ${i+1}" loading="lazy"></button>`).join("")}</div>` : ""}
         <div class="product-details">
           <div class="product-category">${esc(p.category)}</div>
           <h3>${esc(lang === "bn" && p.name_bn ? p.name_bn : p.name)}</h3>
@@ -280,6 +285,12 @@ function esc(value) {
 /* Product photo gallery: tap the cover or any thumbnail to view images. */
 const galleryStyle = document.createElement("style");
 galleryStyle.textContent = `
+.product-photo-strip{display:flex;gap:7px;padding:9px 10px;background:#fffdf8;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#bda77f #eee8de}
+.product-photo-thumb{display:block;flex:0 0 calc((100% - 28px)/5);min-width:0;height:66px;padding:2px;border:1px solid #e7dfd1;background:#fff;cursor:pointer;overflow:hidden}
+.product-photo-thumb.active{border:2px solid #a1814d}
+.product-photo-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.product-photo-thumb:hover{border-color:#a1814d}
+@media(max-width:620px){.product-photo-strip{gap:6px;padding:8px}.product-photo-thumb{flex-basis:calc((100% - 24px)/5);height:58px}}
 .product-gallery-trigger{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:zoom-in;position:relative}
 .product-gallery-trigger:hover{background:transparent}
 .gallery-count{display:block;padding:8px 14px;background:#f7f3eb;color:#8a7048;font-size:10px;letter-spacing:.5px}
@@ -316,6 +327,19 @@ function openProductGallery(id){
   thumbs.innerHTML=imgs.map((url,i)=>`<button type="button" class="gallery-thumb ${i===0?'active':''}" data-gallery-index="${i}" aria-label="View photo ${i+1}"><img src="${esc(url)}" alt=""></button>`).join("");
   galleryModal.classList.add("open"); document.body.style.overflow="hidden";
 }
+productGrid.addEventListener("click",event=>{
+  const thumb=event.target.closest("[data-card-photo]");
+  if(!thumb)return;
+  const id=String(thumb.dataset.cardPhoto);
+  const product=products.find(p=>String(p.id)===id);
+  if(!product)return;
+  const image=productImages(product)[Number(thumb.dataset.photoIndex)];
+  if(!image)return;
+  const main=document.querySelector(`[data-main-product-image="${CSS.escape(id)}"]`);
+  if(main)main.src=image;
+  const card=thumb.closest("[data-product-card]");
+  if(card)card.querySelectorAll(".product-photo-thumb").forEach(el=>el.classList.toggle("active",el===thumb));
+});
 productGrid.addEventListener("click",event=>{const trigger=event.target.closest("[data-gallery]");if(trigger)openProductGallery(trigger.dataset.gallery)});
 document.getElementById("galleryThumbs").addEventListener("click",event=>{
   const button=event.target.closest("[data-gallery-index]");if(!button)return;
