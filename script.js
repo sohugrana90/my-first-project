@@ -142,54 +142,42 @@ async function loadProducts() {
   renderProducts(productSearch.value);
 }
 
+function productImages(p) {
+  const list = Array.isArray(p.image_urls) ? p.image_urls.filter(Boolean) : [];
+  if (p.image_url && !list.includes(p.image_url)) list.unshift(p.image_url);
+  return [...new Set(list)];
+}
+
 function renderProducts(filter = "") {
   const lang = currentLanguage;
   const term = filter.toLowerCase();
-
   const shown = products.filter(p =>
-    [p.name, p.name_bn, p.category, p.description]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase()
-      .includes(term)
+    [p.name, p.name_bn, p.category, p.description].filter(Boolean).join(" ").toLowerCase().includes(term)
   );
-
-  productGrid.innerHTML = shown.length
-    ? shown.map(p => {
-        const sizes = Array.isArray(p.sizes) && p.sizes.length
-          ? p.sizes
-          : ["Free"];
-
-        return `
-          <article class="product-card glass">
-            <div class="product-art">
-              ${p.image_url
-                ? `<img src="${esc(p.image_url)}" alt="${esc(p.name)}" style="width:100%;height:100%;object-fit:cover">`
-                : "👗"}
-            </div>
-            <div class="product-details">
-              <div class="product-category">${esc(p.category)}</div>
-              <h3>${esc(lang === "bn" && p.name_bn ? p.name_bn : p.name)}</h3>
-              <div class="product-price">${money(p.price)}</div>
-              ${p.description ? `<p>${esc(p.description)}</p>` : ""}
-              <div class="product-controls">
-                <select id="size-${esc(p.id)}" aria-label="Choose size">
-                  ${sizes.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join("")}
-                </select>
-                <button class="add-cart" data-add="${esc(p.id)}">
-                  ${lang === "bn" ? "কার্টে যোগ" : "Add +"}
-                </button>
-              </div>
-            </div>
-          </article>
-        `;
-      }).join("")
-    : `<p class="no-results">${lang === "bn" ? "কোনো পণ্য পাওয়া যায়নি।" : "No products found."}</p>`;
-
-  document.getElementById("productCount").textContent =
-    `${shown.length} ${lang === "bn" ? "টি পণ্য" : "products"}`;
+  productGrid.innerHTML = shown.length ? shown.map(p => {
+    const sizes = Array.isArray(p.sizes) && p.sizes.length ? p.sizes : ["Free"];
+    const imgs = productImages(p);
+    const cover = imgs[0];
+    return `
+      <article class="product-card glass">
+        <button class="product-gallery-trigger" type="button" data-gallery="${esc(p.id)}" aria-label="View photos of ${esc(p.name)}">
+          <div class="product-art">${cover ? `<img src="${esc(cover)}" alt="${esc(p.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">` : "👗"}</div>
+          ${imgs.length > 1 ? `<span class="gallery-count">${imgs.length} photos · View gallery ↗</span>` : '<span class="gallery-count">View details ↗</span>'}
+        </button>
+        <div class="product-details">
+          <div class="product-category">${esc(p.category)}</div>
+          <h3>${esc(lang === "bn" && p.name_bn ? p.name_bn : p.name)}</h3>
+          <div class="product-price">${money(p.price)}</div>
+          ${p.description ? `<p>${esc(p.description)}</p>` : ""}
+          <div class="product-controls">
+            <select id="size-${esc(p.id)}" aria-label="Choose size">${sizes.map(size => `<option value="${esc(size)}">${esc(size)}</option>`).join("")}</select>
+            <button class="add-cart" data-add="${esc(p.id)}">${lang === "bn" ? "কার্টে যোগ" : "Add +"}</button>
+          </div>
+        </div>
+      </article>`;
+  }).join("") : `<p class="no-results">${lang === "bn" ? "কোনো পণ্য পাওয়া যায়নি।" : "No products found."}</p>`;
+  document.getElementById("productCount").textContent = `${shown.length} ${lang === "bn" ? "টি পণ্য" : "products"}`;
 }
-
 function renderCart() {
   const count = cart.reduce((sum, item) => sum + item.qty, 0);
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -287,6 +275,59 @@ function esc(value) {
     "'": "&#39;"
   }[c]));
 }
+
+
+/* Product photo gallery: tap the cover or any thumbnail to view images. */
+const galleryStyle = document.createElement("style");
+galleryStyle.textContent = `
+.product-gallery-trigger{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:zoom-in;position:relative}
+.product-gallery-trigger:hover{background:transparent}
+.gallery-count{display:block;padding:8px 14px;background:#f7f3eb;color:#8a7048;font-size:10px;letter-spacing:.5px}
+.product-gallery-modal{position:fixed;inset:0;z-index:9999;background:#171511eF;display:none;align-items:center;justify-content:center;padding:18px}
+.product-gallery-modal.open{display:flex}
+.gallery-dialog{width:min(760px,100%);max-height:94vh;overflow:auto;background:#fffdf8;padding:18px;position:relative}
+.gallery-close{position:absolute;right:12px;top:12px;z-index:2;width:38px;height:38px;border:0;background:#201d18;color:white;font-size:24px;cursor:pointer}
+.gallery-main{height:min(62vh,520px);display:grid;place-items:center;background:#f1ece3;margin-bottom:12px}
+.gallery-main img{max-width:100%;max-height:100%;object-fit:contain}
+.gallery-thumbs{display:flex;gap:9px;overflow-x:auto;padding:3px}
+.gallery-thumb{width:72px;height:78px;flex:0 0 72px;padding:2px;border:1px solid #ded4c4;background:white;cursor:pointer}
+.gallery-thumb.active{border:2px solid #a1814d}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover}
+.gallery-info{padding:12px 2px 3px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.gallery-info h3{font:500 20px Georgia,serif;margin:0;color:#211e19}
+.gallery-info span{font-weight:700;color:#8a7048}
+@media(max-width:600px){.gallery-dialog{padding:10px}.gallery-main{height:55vh}.gallery-info h3{font-size:16px}}
+`;
+document.head.appendChild(galleryStyle);
+const galleryModal=document.createElement("div");
+galleryModal.className="product-gallery-modal";
+galleryModal.id="productGalleryModal";
+galleryModal.innerHTML='<div class="gallery-dialog" role="dialog" aria-modal="true" aria-label="Product photo gallery"><button type="button" class="gallery-close" aria-label="Close gallery">×</button><div class="gallery-main"><img id="galleryMainImage" alt="Product view"></div><div class="gallery-thumbs" id="galleryThumbs"></div><div class="gallery-info"><h3 id="galleryProductName"></h3><span id="galleryProductPrice"></span></div></div>';
+document.body.appendChild(galleryModal);
+function openProductGallery(id){
+  const p=products.find(item=>String(item.id)===String(id)); if(!p)return;
+  const imgs=productImages(p); if(!imgs.length)return;
+  document.getElementById("galleryProductName").textContent=p.name;
+  document.getElementById("galleryProductPrice").textContent=money(p.price);
+  const main=document.getElementById("galleryMainImage"), thumbs=document.getElementById("galleryThumbs");
+  main.src=imgs[0]; main.alt=p.name;
+  thumbs.innerHTML=imgs.map((url,i)=>`<button type="button" class="gallery-thumb ${i===0?'active':''}" data-gallery-index="${i}" aria-label="View photo ${i+1}"><img src="${esc(url)}" alt=""></button>`).join("");
+  galleryModal.classList.add("open"); document.body.style.overflow="hidden";
+}
+productGrid.addEventListener("click",event=>{const trigger=event.target.closest("[data-gallery]");if(trigger)openProductGallery(trigger.dataset.gallery)});
+document.getElementById("galleryThumbs").addEventListener("click",event=>{
+  const button=event.target.closest("[data-gallery-index]");if(!button)return;
+  const id=document.querySelector(".product-gallery-trigger[data-gallery]")?.dataset.gallery;
+  const activeProduct=products.find(p=>String(p.id)===String(id));
+  const imgs=activeProduct?productImages(activeProduct):[];
+  const index=Number(button.dataset.galleryIndex); if(!imgs[index])return;
+  document.getElementById("galleryMainImage").src=imgs[index];
+  document.querySelectorAll(".gallery-thumb").forEach((el,i)=>el.classList.toggle("active",i===index));
+});
+function closeProductGallery(){galleryModal.classList.remove("open");document.body.style.overflow="";}
+galleryModal.querySelector(".gallery-close").addEventListener("click",closeProductGallery);
+galleryModal.addEventListener("click",event=>{if(event.target===galleryModal)closeProductGallery()});
+document.addEventListener("keydown",event=>{if(event.key==="Escape")closeProductGallery()});
 
 renderCart();
 startStore();
