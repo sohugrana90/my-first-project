@@ -304,7 +304,9 @@ galleryModal.className="product-gallery-modal";
 galleryModal.id="productGalleryModal";
 galleryModal.innerHTML='<div class="gallery-dialog" role="dialog" aria-modal="true" aria-label="Product photo gallery"><button type="button" class="gallery-close" aria-label="Close gallery">×</button><div class="gallery-main"><img id="galleryMainImage" alt="Product view"></div><div class="gallery-thumbs" id="galleryThumbs"></div><div class="gallery-info"><h3 id="galleryProductName"></h3><span id="galleryProductPrice"></span></div></div>';
 document.body.appendChild(galleryModal);
+let activeGalleryProductId=null;
 function openProductGallery(id){
+  activeGalleryProductId=String(id);
   const p=products.find(item=>String(item.id)===String(id)); if(!p)return;
   const imgs=productImages(p); if(!imgs.length)return;
   document.getElementById("galleryProductName").textContent=p.name;
@@ -317,8 +319,7 @@ function openProductGallery(id){
 productGrid.addEventListener("click",event=>{const trigger=event.target.closest("[data-gallery]");if(trigger)openProductGallery(trigger.dataset.gallery)});
 document.getElementById("galleryThumbs").addEventListener("click",event=>{
   const button=event.target.closest("[data-gallery-index]");if(!button)return;
-  const id=document.querySelector(".product-gallery-trigger[data-gallery]")?.dataset.gallery;
-  const activeProduct=products.find(p=>String(p.id)===String(id));
+  const activeProduct=products.find(p=>String(p.id)===activeGalleryProductId);
   const imgs=activeProduct?productImages(activeProduct):[];
   const index=Number(button.dataset.galleryIndex); if(!imgs[index])return;
   document.getElementById("galleryMainImage").src=imgs[index];
