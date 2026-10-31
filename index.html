@@ -1,118 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Md. Nur Mohammad — aspiring web developer learning HTML, CSS and JavaScript.">
-  <meta name="theme-color" content="#101027">
-  <title>Nur Fashion House | Md. Nur Mohammad</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f1e8"><meta name="description" content="Shop elegant women's fashion at Nur Fashion House. Browse our collection and order on WhatsApp.">
+<title>Nur Fashion House | Timeless Elegance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-
-  <header class="site-header">
-    <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#home"><span class="brand-mark">MN</span><span>Nur <span class="gradient-text">Fashion House</span></span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#home" data-en="Home" data-bn="হোম">Home</a>
-        <a href="#about" data-en="About" data-bn="আমার সম্পর্কে">About</a>
-        <a href="#skills" data-en="Skills" data-bn="দক্ষতা">Skills</a>
-        <a href="#projects" data-en="Projects" data-bn="প্রজেক্ট">Projects</a>
-        <a href="#shop" data-en="Shop" data-bn="শপ">Shop</a>
-        <a href="#contact" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
-      </div>
-      <div class="nav-actions">
-        <button class="icon-btn" id="languageToggle" aria-label="Switch language">বাংলা</button>
-        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle color theme">☀</button>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero container" id="home">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="status-dot"></span><span data-en="WELCOME TO MY PERSONAL WEBSITE" data-bn="আমার ব্যক্তিগত ওয়েবসাইটে স্বাগতম">WELCOME TO MY PERSONAL WEBSITE</span></div>
-        <p class="hello" data-en="Hello, I'm" data-bn="হ্যালো, আমি">Hello, I'm</p>
-        <h1><span class="gradient-text" data-en="Md. Nur Mohammad" data-bn="মোঃ নূর মোহাম্মদ">Md. Nur Mohammad</span><br><span data-en="Aspiring Web Developer" data-bn="ওয়েব ডেভেলপার হওয়ার স্বপ্ন দেখি">Aspiring Web Developer</span></h1>
-        <p class="hero-description" data-en="I am an aspiring web developer learning HTML, CSS and JavaScript. I enjoy creating simple, clean websites and improving my skills through hands-on projects." data-bn="আমি একজন নতুন ওয়েব ডেভেলপার। HTML, CSS ও JavaScript শিখছি। সহজ, সুন্দর ওয়েবসাইট তৈরি করতে এবং নিজে কাজ করে নতুন দক্ষতা অর্জন করতে ভালোবাসি।">I am an aspiring web developer learning HTML, CSS and JavaScript. I enjoy creating simple, clean websites and improving my skills through hands-on projects.</p>
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#projects" data-en="Explore My Work ↗" data-bn="আমার কাজ দেখুন ↗">Explore My Work ↗</a>
-          <a class="btn btn-secondary" href="#contact" data-en="Contact Me" data-bn="যোগাযোগ করুন">Contact Me</a>
-        </div>
-        <div class="hero-meta">
-          <div><span class="meta-icon">◷</span><span data-en="Local time" data-bn="স্থানীয় সময়">Local time</span><strong id="liveClock">--:--:--</strong><small id="liveDate">Loading date…</small></div>
-          <div><span class="meta-icon">◎</span><span data-en="Visits on this browser" data-bn="এই ব্রাউজারে ভিজিট">Visits on this browser</span><strong id="visitCount">—</strong><small data-en="Stored on this device" data-bn="এই ডিভাইসে সংরক্ষিত">Stored on this device</small></div>
-        </div>
-      </div>
-      <div class="hero-art reveal">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="profile-card">
-          <div class="card-top"><span></span><span></span><span></span><small>HELLO WORLD</small></div>
-          <div class="avatar">NM</div>
-          <div class="code-line short"></div><div class="code-line long"></div><div class="code-line medium"></div>
-          <div class="profile-caption"><strong data-en="Creative mind" data-bn="সৃজনশীল মন">Creative mind</strong><span data-en="Always learning • Always building" data-bn="শিখছি প্রতিদিন • তৈরি করছি প্রতিনিয়ত">Always learning • Always building</span></div>
-        </div>
-        <div class="floating-chip chip-one">✦ HTML</div><div class="floating-chip chip-two">✧ CSS</div><div class="floating-chip chip-three">⌘ JS</div>
-      </div>
-    </section>
-
-    <section class="section container" id="about">
-      <div class="section-heading reveal"><p class="section-kicker">01 / <span data-en="GET TO KNOW ME" data-bn="আমার পরিচয়">GET TO KNOW ME</span></p><h2 data-en="A little about me" data-bn="আমার সম্পর্কে কিছু কথা">A little about me</h2></div>
-      <div class="about-panel glass reveal">
-        <div class="about-symbol">✳</div>
-        <div><h3 data-en="Curious by nature, creator by passion." data-bn="জানার আগ্রহ থেকেই আমার সৃষ্টির শুরু।">Curious by nature, creator by passion.</h3>
-        <p data-en="I am at the beginning of my web development journey. I am learning how to build websites with HTML, CSS and JavaScript, and I practise by making small projects. My goal is to grow step by step and create useful, user-friendly websites." data-bn="ওয়েব ডেভেলপমেন্টে আমার শেখার যাত্রা শুরু হয়েছে। HTML, CSS ও JavaScript দিয়ে ওয়েবসাইট তৈরি করা শিখছি এবং ছোট ছোট প্রজেক্টের মাধ্যমে অনুশীলন করছি। ধাপে ধাপে দক্ষতা বাড়িয়ে ব্যবহারবান্ধব ওয়েবসাইট তৈরি করাই আমার লক্ষ্য।">I am at the beginning of my web development journey. I am learning how to build websites with HTML, CSS and JavaScript, and I practise by making small projects. My goal is to grow step by step and create useful, user-friendly websites.</p>
-        <a class="text-link" href="#contact" data-en="Let's connect →" data-bn="চলুন যোগাযোগ করি →">Let's connect →</a></div>
-      </div>
-    </section>
-
-    <section class="section container" id="skills">
-      <div class="section-heading reveal"><p class="section-kicker">02 / <span data-en="WHAT I USE" data-bn="আমার দক্ষতা">WHAT I USE</span></p><h2 data-en="Skills & technologies" data-bn="দক্ষতা ও প্রযুক্তি">Skills & technologies</h2></div>
-      <div class="skills-grid">
-        <article class="skill-card glass reveal"><div class="skill-icon orange">5</div><h3>HTML5</h3><p data-en="Beginner · Learning page structure" data-bn="প্রাথমিক · ওয়েবপেজের কাঠামো শিখছি">Beginner · Learning page structure</p><div class="skill-track"><span style="width:35%"></span></div></article>
-        <article class="skill-card glass reveal"><div class="skill-icon blue">✧</div><h3>CSS3</h3><p data-en="Beginner · Learning layouts and styling" data-bn="প্রাথমিক · লেআউট ও স্টাইলিং শিখছি">Beginner · Learning layouts and styling</p><div class="skill-track"><span style="width:30%"></span></div></article>
-        <article class="skill-card glass reveal"><div class="skill-icon yellow">JS</div><h3>JavaScript</h3><p data-en="Currently learning the basics" data-bn="এখন প্রাথমিক বিষয়গুলো শিখছি">Currently learning the basics</p><div class="skill-track"><span style="width:15%"></span></div></article>
-      </div>
-      <p class="small-note" data-en="Skill levels are shown as beginner learning progress and can be updated over time." data-bn="দক্ষতাগুলো শেখার প্রাথমিক পর্যায় বোঝায়; অভিজ্ঞতা বাড়লে আপডেট করা যাবে।">Skill levels are shown as beginner learning progress and can be updated over time.</p>
-    </section>
-
-    <section class="section container" id="projects">
-      <div class="section-heading reveal"><p class="section-kicker">03 / <span data-en="SELECTED WORK" data-bn="আমার কাজ">SELECTED WORK</span></p><h2 data-en="Featured projects" data-bn="নির্বাচিত প্রজেক্ট">Featured projects</h2></div>
-      <div class="projects-grid">
-        <article class="project-card glass reveal"><div class="project-visual visual-one"><span>01</span><div class="mini-window"><i></i><i></i><i></i><b>My First Website</b><em></em><em></em></div></div><div class="project-info"><p class="project-type">HTML • CSS</p><h3 data-en="My First Website" data-bn="আমার প্রথম ওয়েবসাইট">My First Website</h3><p data-en="A starting point for my journey into web development." data-bn="ওয়েব ডেভেলপমেন্ট শেখার যাত্রায় আমার প্রথম পদক্ষেপ।">A starting point for my journey into web development.</p><a class="text-link" href="https://sohugrana90.github.io/my-first-project/" target="_blank" rel="noopener noreferrer" data-en="View project ↗" data-bn="প্রজেক্ট দেখুন ↗">View project ↗</a></div></article>
-        <article class="project-card glass reveal"><div class="project-visual visual-two"><span>02</span><div class="abstract-shape">✦</div></div><div class="project-info"><p class="project-type">HTML • CSS • JAVASCRIPT</p><h3 data-en="Personal Portfolio Website" data-bn="ব্যক্তিগত পোর্টফোলিও ওয়েবসাইট">Personal Portfolio Website</h3><p data-en="A bilingual portfolio with a gradient design, theme switcher and interactive features." data-bn="গ্রেডিয়েন্ট ডিজাইন, ভাষা পরিবর্তন ও ইন্টারঅ্যাকটিভ ফিচারসহ একটি দ্বিভাষিক পোর্টফোলিও।">A bilingual portfolio with a gradient design, theme switcher and interactive features.</p><a class="text-link" href="#home" data-en="You are viewing it ↗" data-bn="আপনি এই ওয়েবসাইটটিই দেখছেন ↗">You are viewing it ↗</a></div></article>
-      </div>
-    </section>
-
-    <section class="section container" id="shop">
-      <div class="section-heading reveal"><p class="section-kicker">04 / <span data-en="FASHION STORE" data-bn="ফ্যাশন স্টোর">FASHION STORE</span></p><h2 data-en="Nur Fashion House Collection" data-bn="নূর ফ্যাশন হাউস কালেকশন">Nur Fashion House Collection</h2><p class="shop-intro" data-en="Browse the sample collection, choose a size and add items to your cart. Place your order directly on WhatsApp." data-bn="নমুনা কালেকশন দেখুন, সাইজ নির্বাচন করুন এবং কার্টে পণ্য যোগ করুন। সরাসরি WhatsApp-এ অর্ডার দিন।">Browse the sample collection, choose a size and add items to your cart. Place your order directly on WhatsApp.</p></div>
-      <div class="shop-toolbar"><span id="productCount">6 products</span><label class="search-wrap"><span>⌕</span><input id="productSearch" type="search" placeholder="Search products..." aria-label="Search products"></label></div>
-      <div class="shop-layout"><div class="products-grid shop-grid" id="productGrid"></div>
-        <aside class="cart-panel glass" id="cartPanel"><div class="cart-heading"><h3 data-en="Your cart" data-bn="আপনার কার্ট">Your cart</h3><span class="cart-count" id="cartCount">0</span></div><div id="cartItems" class="cart-items"><p class="empty-cart" data-en="Your cart is empty." data-bn="আপনার কার্ট খালি।">Your cart is empty.</p></div><div class="cart-total"><span data-en="Total" data-bn="সর্বমোট">Total</span><strong id="cartTotal">৳0</strong></div>
-          <form id="orderForm" class="order-form"><label for="customerName" data-en="Your name" data-bn="আপনার নাম">Your name</label><input id="customerName" required placeholder="Enter your name"><label for="customerAddress" data-en="Delivery address" data-bn="ডেলিভারি ঠিকানা">Delivery address</label><textarea id="customerAddress" required rows="2" placeholder="Your full delivery address"></textarea><button class="btn btn-primary order-button" type="submit" id="whatsappOrder" disabled>Order via WhatsApp ↗</button><small data-en="You will confirm the order and delivery details on WhatsApp." data-bn="WhatsApp-এ অর্ডার ও ডেলিভারির বিস্তারিত নিশ্চিত করবেন।">You will confirm the order and delivery details on WhatsApp.</small></form>
-        </aside></div>
-      <p class="small-note" data-en="Demo products and prices are examples. Replace them with your real product photos, names, sizes and prices before sharing your store." data-bn="পণ্য ও দামগুলো নমুনা হিসেবে দেওয়া হয়েছে। শেয়ার করার আগে নিজের পণ্যের ছবি, নাম, সাইজ ও দাম বসিয়ে নেবেন।">Demo products and prices are examples. Replace them with your real product photos, names, sizes and prices before sharing your store.</p>
-    </section>
-
-    <section class="section container" id="contact">
-      <div class="contact-panel reveal"><div><p class="section-kicker">05 / CONTACT</p><h2 data-en="Have an idea? Let's talk." data-bn="কোনো পরিকল্পনা আছে? কথা বলি।">Have an idea? Let's talk.</h2><p data-en="I'd love to hear from you. Connect with me through the links below." data-bn="আপনার কথা শুনতে ভালো লাগবে। নিচের লিংকগুলোর মাধ্যমে যোগাযোগ করুন।">I'd love to hear from you. Connect with me through the links below.</p></div><div class="contact-links">
-          <a href="mailto:sohugrana90@gmail.com">Email ↗</a>
-          <a href="https://wa.me/8801722574666" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
-          <a href="https://www.facebook.com/mdnurmohammad666" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
-          <a href="https://www.instagram.com/mdmohammad213/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-          <a href="https://github.com/sohugrana90" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-        </div></div>
-    </section>
-  </main>
-
-  <footer class="footer"><div class="container footer-inner"><span>© <span id="year"></span> Md. Nur Mohammad. <span data-en="Made with curiosity." data-bn="কৌতূহল নিয়ে তৈরি।">Made with curiosity.</span></span><a href="#home">Back to top ↑</a></div></footer>
-  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
-  <script src="script.js"></script>
-</body>
-</html>
+<body class="fashion-store">
+<div class="store-announcement">NUR FASHION HOUSE <span>✦</span> ELEGANCE IN EVERY DETAIL <span>✦</span> ORDER ON WHATSAPP</div>
+<header class="site-header">
+<nav class="nav container" aria-label="Main navigation">
+<a class="brand" href="#home"><span class="brand-mark">N</span><span class="brand-name">NUR<small>FASHION HOUSE</small></span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+<div class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#shop">Collection</a><a href="#about">Our Story</a><a href="#contact">Contact</a></div>
+<div class="nav-actions"><button class="icon-btn" id="languageToggle" aria-label="Switch language">বাংলা</button><a class="cart-shortcut" href="#cartPanel">Bag <span id="cartCount">0</span></a><button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle color theme">☼</button></div>
+</nav></header>
+<main>
+<section class="store-hero" id="home"><div class="store-hero-copy"><p class="store-eyebrow">THE ART OF DRESSING WELL · 2026</p><h1>Wear your<br><em>own elegance.</em></h1><p>Discover graceful designs, thoughtful details and timeless pieces selected to make every occasion special.</p><a class="store-button" href="#shop">Explore the collection <span>↗</span></a><div class="hero-caption">CURATED WITH CARE · MADE TO BE LOVED</div></div><div class="store-hero-art" role="img" aria-label="Elegant warm neutral fashion editorial"><div class="art-frame"><div class="art-silhouette"></div><div class="art-orb"></div><span class="art-stamp">N<br>F H</span></div><div class="art-side-note">NUR FASHION HOUSE — EST. WITH LOVE</div></div></section>
+<section class="store-promises"><div><span>✧</span><b>Curated styles</b><small>Selected with care</small></div><div><span>◇</span><b>Easy ordering</b><small>Direct WhatsApp orders</small></div><div><span>♡</span><b>Personal service</b><small>Here to help you</small></div></section>
+<section class="section container store-collection" id="shop"><div class="store-section-heading"><div><p class="store-eyebrow">FIND YOUR SIGNATURE LOOK</p><h2>Our Collection</h2></div><p>Pieces to love, wear and treasure.</p></div>
+<div class="shop-toolbar"><label class="search-wrap"><span>⌕</span><input id="productSearch" type="search" placeholder="Search the collection..." aria-label="Search products"></label><span id="productCount">Loading collection…</span></div>
+<div class="shop-layout"><div class="products-grid shop-grid" id="productGrid"><p class="loading-note">Preparing the collection…</p></div>
+<aside class="cart-panel glass" id="cartPanel"><div class="cart-heading"><h3>Your Bag</h3><span class="cart-count" id="cartCountBadge">0</span></div><div id="cartItems" class="cart-items"><p class="empty-cart">Your bag is waiting for something beautiful.</p></div><div class="cart-total"><span>Total</span><strong id="cartTotal">৳0</strong></div>
+<form id="orderForm" class="order-form"><label for="customerName">Your name</label><input id="customerName" required autocomplete="name" placeholder="Enter your name"><label for="customerAddress">Delivery address</label><textarea id="customerAddress" required rows="2" autocomplete="street-address" placeholder="Your full delivery address"></textarea><button class="btn btn-primary order-button" type="submit" id="whatsappOrder" disabled>Order via WhatsApp ↗</button><small>You will confirm your order and delivery details on WhatsApp.</small></form></aside></div>
+<p class="store-small-note">Product availability, sizes and delivery charges will be confirmed with you on WhatsApp.</p></section>
+<section class="store-story" id="about"><p class="store-eyebrow">A LITTLE ABOUT US</p><h2>Fashion is personal.<br><em>Let’s make it yours.</em></h2><p>At Nur Fashion House, we believe the right outfit brings confidence, comfort and joy. Explore our collection and find your next favourite.</p></section>
+<section class="store-contact container" id="contact"><div><p class="store-eyebrow">WE’RE HERE FOR YOU</p><h2>Let’s find something beautiful.</h2><p>Questions about a design or your order? Get in touch with us.</p></div><a href="https://wa.me/8801722574666" target="_blank" rel="noopener noreferrer" class="store-button">Chat on WhatsApp ↗</a></section>
+</main>
+<footer class="store-footer"><a class="brand" href="#home"><span class="brand-mark">N</span><span class="brand-name">NUR<small>FASHION HOUSE</small></span></a><span>Elegance in every detail.</span><a href="admin.html">Store Admin</a><small>© <span id="year"></span> Nur Fashion House. All rights reserved.</small></footer>
+<button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+<div class="store-script-support" aria-hidden="true"><span id="liveClock"></span><span id="liveDate"></span><span id="visitCount"></span></div>
+<script src="script.js"></script>
+<script>
+const cartCountMirror = new MutationObserver(() => { const badge=document.getElementById('cartCountBadge'); const source=document.getElementById('cartCount'); if(badge&&source) badge.textContent=source.textContent; });
+cartCountMirror.observe(document.getElementById('cartCount'),{childList:true,characterData:true,subtree:true});
+</script>
+</body></html>
