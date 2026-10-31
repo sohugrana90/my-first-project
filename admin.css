@@ -1,1 +1,42 @@
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#101026,#21113d 55%,#132b46);color:#f7f4ff;font:16px/1.5 system-ui,Arial}.wrap{max-width:980px;margin:40px auto;padding:0 18px}header,.bar{display:flex;justify-content:space-between;align-items:center;gap:20px}h1{font-size:clamp(2rem,5vw,3rem);margin:0}h2,h3{margin-top:0}.eyebrow{letter-spacing:.2em;color:#c4a7ff;font-weight:700}.muted,footer{color:#b9b3ca}.panel{background:#ffffff10;border:1px solid #ffffff24;border-radius:18px;padding:24px;margin:22px 0;backdrop-filter:blur(12px)}label{display:block;margin:12px 0;color:#e9e2fa}input,textarea,select{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid #ffffff30;border-radius:10px;background:#100e20;color:#fff;font:inherit}input[type=file]{padding:8px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}button{border:0;border-radius:10px;padding:11px 18px;background:#9b72f2;color:#fff;font-weight:700;cursor:pointer}button:hover{filter:brightness(1.1)}.secondary,.tab{background:#ffffff18}.tab.active{background:#9b72f2}.actions,.bar,nav{display:flex;gap:10px;align-items:center}.check{display:flex;align-items:center;gap:8px}.check input{width:auto}.hidden{display:none!important}.list{display:grid;gap:10px}.item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px;border-radius:12px;background:#ffffff0d}.item p{margin:3px 0;color:#c9c2d8}.item button{margin-left:6px}.small{font-size:.88rem}.message{color:#d8c8ff;min-height:1.4em}a{color:#d8c8ff}@media(max-width:620px){.formgrid{grid-template-columns:1fr}.wrap{margin:20px auto}.panel{padding:17px}.item{align-items:flex-start;flex-direction:column}}
+/* Nur Fashion House — boutique admin dashboard */
+:root{--paper:#f7f3eb;--white:#fffdf8;--ink:#211e19;--muted:#81796d;--gold:#a1814d;--line:#e7dfd1;--danger:#9c4b40}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--paper);color:var(--ink);font:14px/1.6 "DM Sans","Hind Siliguri",system-ui,sans-serif}
+.wrap{width:min(1080px,calc(100% - 36px));margin:38px auto 60px}
+header{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0 30px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:700;margin:0 0 7px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:500}
+h1{font-size:clamp(34px,5vw,48px);line-height:1.1;margin:0}
+h2{font-size:27px;margin:0 0 18px}
+h3{font-size:22px;margin:0 0 17px}
+header a{color:var(--ink);font-size:12px;text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:4px}
+.muted,footer{color:var(--muted)}header .muted{font-size:12px;margin:8px 0 0}
+.panel{background:var(--white);border:1px solid var(--line);padding:clamp(18px,3vw,30px);margin:24px 0;box-shadow:0 12px 35px #3b2d1708}
+label{display:block;margin:15px 0;color:#514a40;font-size:12px;font-weight:600}
+input,textarea,select{display:block;width:100%;margin-top:7px;padding:12px 13px;border:1px solid #ddd4c5;border-radius:2px;background:#fff;color:var(--ink);font:13px inherit;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 2px #a1814d16}
+input[type=file]{padding:8px}input[type=checkbox]{width:auto;accent-color:var(--gold)}
+button{border:1px solid var(--ink);border-radius:0;padding:11px 18px;background:var(--ink);color:white;font:600 11px "DM Sans",sans-serif;letter-spacing:.4px;cursor:pointer;transition:.2s}
+button:hover{background:var(--gold);border-color:var(--gold)}
+.secondary,.tab{background:transparent;color:var(--ink);border-color:var(--line)}
+.secondary:hover,.tab:hover{color:white}
+.tab.active{background:var(--ink);color:white;border-color:var(--ink)}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px}
+.check{display:flex;align-items:center;gap:9px}
+.actions,.bar,nav{display:flex;gap:10px;align-items:center}
+.bar{justify-content:space-between;margin:28px 0 14px}
+.bar h2{margin:0}
+nav{border-bottom:1px solid var(--line);padding-bottom:12px}
+.hidden{display:none!important}
+.list{display:grid;gap:10px}
+.item{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 16px;background:#faf7f0;border:1px solid var(--line)}
+.item p{margin:4px 0 0;color:var(--muted);font-size:11px}
+.item button{margin-left:6px}
+.small{font-size:11px;line-height:1.6}
+.message{color:var(--gold);min-height:1.4em;font-size:12px}
+a{color:var(--gold)}
+footer{font-size:11px;border-top:1px solid var(--line);padding:18px 0}
+#dashboard .panel{margin-top:18px}
+#setup>p,#login>p{font-size:12px;line-height:1.8}
+#productList:empty:after,#orderList:empty:after{content:"Nothing to show yet.";color:var(--muted);font-size:12px}
+@media(max-width:620px){.wrap{margin:18px auto 40px;width:calc(100% - 28px)}header{align-items:flex-start;flex-direction:column;padding:14px 0 22px}.formgrid{grid-template-columns:1fr}.panel{padding:18px;margin:16px 0}.item{align-items:flex-start;flex-direction:column}.item button{margin:8px 6px 0 0}.bar{align-items:flex-start}.actions{flex-wrap:wrap}}
