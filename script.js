@@ -92,7 +92,7 @@ const STORE_WHATSAPP = "8801722574666";
 
 // Supabase connection
 const SUPABASE_URL = "https://icpklfqzrfceaazhashh.supabase.co";
-const SUPABASE_KEY = "YOUR_PUBLISHABLE_KEY";
+const SUPABASE_KEY = "sb_publishable_u_zCC7ueb8VGJYr9KzXZbg_gPHxRK1O";
 
 let sb;
 let products = [];
